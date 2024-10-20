@@ -1,20 +1,72 @@
 {
   "compilerOptions": {
     "jsx": "react-jsx",
+    "typeRoots": [
+      "node_modules/@types",
+      "src/app/types"
+    ],
     "target": "ES6",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "es2015.iterable"
+    ],
     "allowJs": true,
     "module": "commonjs",
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "noEmit": true,
     "noImplicitAny": true,
     "sourceMap": true,
-    "baseUrl": ".",
+    "baseUrl": "src",
     "outDir": "dist",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "paths": {
-      "*": ["node_modules/*"]
-    }
+      // Node modules
+      "*": [
+        "node_modules/*"
+      ],
+      // App library
+      "assets/*": [
+        "app/assets/*"
+      ],
+      "components/*": [
+        "app/components/*"
+      ],
+      "contexts/*": [
+        "app/contexts/*"
+      ],
+      "layouts/*": [
+        "app/layouts/*"
+      ],
+      "theme/*": [
+        "app/theme/*"
+      ],
+      "types/*": [
+        "app/types/*"
+      ],
+      "variables/*": [
+        "app/variables/*"
+      ],
+      "views/*": [
+        "app/views/*"
+      ],
+      "routes": [
+        "app/routes"
+      ]
+    },
+    "noImplicitThis": true,
+    "strictNullChecks": false,
+    "downlevelIteration": true,
   },
-  "include": ["src/**/*"]
+  "include": [
+    "./src"
+  ],
 }

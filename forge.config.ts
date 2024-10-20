@@ -11,6 +11,11 @@ import { FuseV1Options, FuseVersion } from '@electron/fuses';
 import { mainConfig } from './webpack.main.config';
 import { rendererConfig } from './webpack.renderer.config';
 
+import fs from "fs";
+import path from "path";
+// import { globSync } from "glob";
+import { spawnSync } from "child_process";
+
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
@@ -47,6 +52,28 @@ const config: ForgeConfig = {
       [FuseV1Options.OnlyLoadAppFromAsar]: true,
     }),
   ],
+  hooks: {
+    packageAfterPrune: async (_forgeConfig, buildPath, _electronVersion, platform, _arch) => {
+      /**
+       * Serialport is a problematic library to run in Electron.
+       * When Electron app is been built, Node.js libraries are not included properly in the final executable.
+       * What we do here is to install them explicitly and then remove the files that are not for the platform
+       * we are building for
+       */
+      const packageJson = JSON.parse(fs.readFileSync(path.resolve(buildPath, "package.json")).toString());
+
+      packageJson.dependencies = {
+        serialport: "^12.0.0",
+      };
+
+      fs.writeFileSync(path.resolve(buildPath, "package.json"), JSON.stringify(packageJson));
+      spawnSync("npm", ["install", "--omit=dev"], {
+        cwd: buildPath,
+        stdio: "inherit",
+        shell: true,
+      });
+    },
+  },
 };
 
 export default config;
