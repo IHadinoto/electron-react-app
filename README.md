@@ -30,13 +30,17 @@ cd electron-react-app
 
 ### Install Dependencies
 
-```npm install```
+```
+npm install
+```
 
 ### Run the Application
 
 To start the Electron app with React:
 
-```npm run start```
+```
+npm start
+```
 
 This command will build the React app and start Electron in development mode.
 
@@ -44,7 +48,9 @@ This command will build the React app and start Electron in development mode.
 
 To package the app for production, use:
 
-```npm run make```
+```
+npm run make
+```
 
 This will create a distributable version of the app in the `dist` folder, ready for deployment.
 
