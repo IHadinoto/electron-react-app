@@ -1,8 +1,8 @@
 {
-  "name": "electron-desktop-app",
-  "productName": "electron-desktop-app",
+  "name": "electron-react-app",
+  "productName": "electron-react-app",
   "version": "1.0.0",
-  "description": "Electron React Desktop App",
+  "description": "Electron React App",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
